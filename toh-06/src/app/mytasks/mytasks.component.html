@@ -1,0 +1,44 @@
+
+<h2>My Task Multiple Service Instance</h2>
+<div>
+    <label for="new-task">Task name: </label>
+    <input id="new-task" #taskName />
+  
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add(taskName.value); taskName.value=''">
+      Add Task
+    </button>
+  </div>
+
+  <ul class="tasks">
+    <li *ngFor="let task of tasks">
+      <a routerLink="/detail/{{task.id}}">
+        <span class="badge">{{task.id}}</span> {{task.name}}
+      </a>
+      <button type="button" class="delete" title="delete task"
+        (click)="delete(task)">x</button>
+    </li>
+  </ul>
+
+
+  <!-- user functionality -->
+  <div>
+    <label for="new-user">User name: </label>
+    <input id="new-user" #userName />
+  
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add1(userName.value); userName.value=''">
+      Add User
+    </button>
+  </div>
+
+  <ul class="users">
+    <li *ngFor="let user of users">
+      <a routerLink="/detail/{{user.id}}">
+        <span class="badge">{{user.id}}</span> {{user.name}}
+      </a>
+      <button type="button" class="delete" title="delete user"
+        (click)="delete1(user)">x</button>
+    </li>
+  </ul>
+
