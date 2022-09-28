@@ -10,6 +10,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeDetailsComponent implements OnInit {
 
+  employees: Employee[];
   id: number;
   employee: Employee
   constructor(private route: ActivatedRoute,
@@ -19,15 +20,25 @@ export class EmployeeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
 
+    this.getEmployees();
     this.employee = new Employee();
-    this.employeeService.getEmployeeById(this.id).subscribe( data => {
+    this.employeeService.getEmployeeById(this.id).subscribe(data => {
       this.employee = data;
     })
+  }
+  getEmployees() {
+    this.employeeService.getEmployeesList().subscribe(data => {
+      this.employees = data;
+    });
   }
 
   back() {
     this.router.navigate(['/employee-list']);
-    }
+  }
+
+  next() {
+    this.router.navigate(['/update-employee/:id']);
+  }
 
   // back() {
   //   this.router.navigate(['update-employee', id]);
