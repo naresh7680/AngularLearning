@@ -40,8 +40,4 @@ export class EmployeeDetailsComponent implements OnInit {
     this.router.navigate(['/update-employee/:id']);
   }
 
-  // back() {
-  //   this.router.navigate(['update-employee', id]);
-  // }
-
 }
