@@ -19,6 +19,7 @@ export class UpdateEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    this.updateEmployee(this.id, this.employee);
     this.employeeService.getEmployeeById(this.id).subscribe(data => {
       this.employee = data;
     }, error => console.log(error));
@@ -39,7 +40,15 @@ export class UpdateEmployeeComponent implements OnInit {
   onSubmit() {
     console.log(this.employee);
     this.saveEmployee();
+    this.updateEmployee(this.id, this.employee);
     this.router.navigate(['/employee-list']);
+  }
+
+  updateEmployee(id: number, employee: Employee) {
+    this.employeeService.updateEmployee(this.id, this.employee).subscribe( data => {
+      return data = data;
+      // this.goToEmployeeList();
+    });
   }
 
 }
